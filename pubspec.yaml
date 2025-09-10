@@ -43,6 +43,7 @@ dependencies:
   flutter_rounded_date_picker: ^3.0.4
   flutter_localization: ^0.2.2
   http: ^1.2.2
+  flex_color_scheme: ^8.0.0
 
 dev_dependencies:
   flutter_test:

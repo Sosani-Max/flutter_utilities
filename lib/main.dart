@@ -1,4 +1,5 @@
 import 'package:fluter_utilities/config/shared/app_data.dart';
+import 'package:fluter_utilities/config/shared/default_theme.dart';
 import 'package:fluter_utilities/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,11 +9,16 @@ import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // สำคัญถ้าใช้ async main
   await GetStorage.init();
-  runApp(MultiProvider(
-    providers: [ChangeNotifierProvider(create: (context) => AppData())],
-    child: const MyApp(),
-  ));
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => AppData()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -22,19 +28,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        textTheme: GoogleFonts.notoSansThaiTextTheme(),
-        brightness: Brightness.light,
-        primarySwatch: Colors.blue,
+
+      // ใช้ defaultTheme ที่ประกาศไว้
+      theme: defaultTheme.theme.copyWith(
+        textTheme: GoogleFonts.notoSansThaiTextTheme(), // ใช้ Google Fonts
       ),
-      darkTheme: ThemeData(
+      darkTheme: defaultTheme.darkTheme.copyWith(
         textTheme: GoogleFonts.notoSansThaiTextTheme(),
-        brightness: Brightness.dark,
-        primarySwatch: Colors.deepPurple,
       ),
-      themeMode: ThemeMode
-          .light, // เริ่มต้นเป็นสว่าง (ถ้าอยากเริ่มมืดใส่ ThemeMode.dark)
-      home: HomePage(),
+      themeMode: ThemeMode.dark, // เริ่มต้นสว่าง
+      home: const HomePage(),
+
+      // Localization
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,

@@ -12,7 +12,11 @@ class _GGFontPageState extends State<GGFontPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Google Font'),
+        backgroundColor: Colors.blue,
+        title: const Text(
+          'Google Font',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: const Center(
         child: Text(

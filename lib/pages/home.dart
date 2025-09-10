@@ -86,11 +86,7 @@ class _HomePageState extends State<HomePage> {
                   child: const Text('Google Font')),
               FilledButton(
                   onPressed: () {
-                    context.read()<AppData>().username = 'Admin';
-                    UserProfile user = UserProfile();
-                    user.idx = 1234;
-                    user.fullname = 'Je';
-                    context.read()<AppData>().user = user;
+                    context.read<AppData>().userEmail = 'Test@gmail.com';
                     Get.to(() => const ProviderPage());
                   },
                   child: const Text('Provider')),
